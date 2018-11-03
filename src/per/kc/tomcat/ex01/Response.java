@@ -25,7 +25,10 @@ public class Response {
         try {
             File file = new File(HttpServer.WEB_ROOT, request.getUri());
             if (file.exists()) {
-                String header = "HTTP/1.1 200 OK\r\n";
+                String header = "HTTP/1.1 200 OK\r\n" +
+                        "Content-Type: text/html\r\n" +
+                        "Content-Length: 87\r\n" +
+                        "\r\n";
                 output.write(header.getBytes());
 
                 fis = new FileInputStream(file);
