@@ -25,23 +25,20 @@ public class Response implements ServletResponse {
         byte[] bytes = new byte[BUFFER_SIZE];
         FileInputStream fis = null;
         try {
-            /* request.getUri has been replaced by request.getRequestURI */
             File file = new File(Constants.WEB_ROOT, request.getUri());
-            fis = new FileInputStream(file);
+            if (file.exists()) {
+                String header = "HTTP/1.1 200 OK\r\n" +
+                        "Content-Type: text/html\r\n" +
+                        "Content-Length: 87\r\n" +
+                        "\r\n";
+                output.write(header.getBytes());
 
-            /*
-                HTTP Response =
-                    Status-Line
-                    *(( general-header | response-header | entity-header ) CRLF)
-                    CRLF
-                    [ message-body ]
-
-                Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
-            */
-            int ch = fis.read(bytes, 0, BUFFER_SIZE);
-            while (ch!=-1) {
-                output.write(bytes, 0, ch);
-                ch = fis.read(bytes, 0, BUFFER_SIZE);
+                fis = new FileInputStream(file);
+                int ch = fis.read(bytes, 0, BUFFER_SIZE);
+                while (ch!=-1) {
+                    output.write(bytes, 0, ch);
+                    ch = fis.read(bytes, 0, BUFFER_SIZE);
+                }
             }
         }
         catch (FileNotFoundException e) {

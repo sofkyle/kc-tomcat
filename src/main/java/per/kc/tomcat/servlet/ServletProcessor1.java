@@ -42,6 +42,7 @@ public class ServletProcessor1 {
         Servlet servlet = null;
         try {
             servlet = (Servlet) myClass.newInstance();
+            response.getWriter().println("HTTP/1.1 200 OK\r\n");
             servlet.service((ServletRequest) request, (ServletResponse) response);
         }
         catch (Exception e) {
