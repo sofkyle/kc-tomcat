@@ -55,7 +55,6 @@ public class Response implements ServletResponse {
         }
     }
 
-    /**  **/
     @Override
     public void flushBuffer() throws IOException {
 

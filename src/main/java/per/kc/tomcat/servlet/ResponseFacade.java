@@ -7,77 +7,89 @@ import javax.servlet.ServletResponse;
 import javax.servlet.ServletOutputStream;
 
 public class ResponseFacade implements ServletResponse {
+    private ServletResponse response;
 
-  private ServletResponse response;
-  public ResponseFacade(Response response) {
+    public ResponseFacade(Response response) {
     this.response = response;
   }
 
-  public void flushBuffer() throws IOException {
-    response.flushBuffer();
-  }
+    @Override
+    public String getCharacterEncoding() {
+        return null;
+    }
 
-  public int getBufferSize() {
-    return response.getBufferSize();
-  }
+    @Override
+    public String getContentType() {
+        return null;
+    }
 
-  public String getCharacterEncoding() {
-    return response.getCharacterEncoding();
-  }
+    @Override
+    public ServletOutputStream getOutputStream() throws IOException {
+        return null;
+    }
 
-  @Override
-  public String getContentType() {
-    return null;
-  }
+    @Override
+    public PrintWriter getWriter() throws IOException {
+        return null;
+    }
 
-  public Locale getLocale() {
-    return response.getLocale();
-  }
+    @Override
+    public void setCharacterEncoding(String charset) {
 
-  public ServletOutputStream getOutputStream() throws IOException {
-    return response.getOutputStream();
-  }
+    }
 
-  public PrintWriter getWriter() throws IOException {
-    return response.getWriter();
-  }
+    @Override
+    public void setContentLength(int len) {
 
-  @Override
-  public void setCharacterEncoding(String charset) {
+    }
 
-  }
+    @Override
+    public void setContentLengthLong(long len) {
 
-  public boolean isCommitted() {
-    return response.isCommitted();
-  }
+    }
 
-  public void reset() {
-    response.reset();
-  }
+    @Override
+    public void setContentType(String type) {
 
-  public void resetBuffer() {
-    response.resetBuffer();
-  }
+    }
 
-  public void setBufferSize(int size) {
-    response.setBufferSize(size);
-  }
+    @Override
+    public void setBufferSize(int size) {
 
-  public void setContentLength(int length) {
-    response.setContentLength(length);
-  }
+    }
 
-  @Override
-  public void setContentLengthLong(long len) {
+    @Override
+    public int getBufferSize() {
+        return 0;
+    }
 
-  }
+    @Override
+    public void flushBuffer() throws IOException {
 
-  public void setContentType(String type) {
-    response.setContentType(type);
-  }
+    }
 
-  public void setLocale(Locale locale) {
-    response.setLocale(locale);
-  }
+    @Override
+    public void resetBuffer() {
 
+    }
+
+    @Override
+    public boolean isCommitted() {
+        return false;
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void setLocale(Locale loc) {
+
+    }
+
+    @Override
+    public Locale getLocale() {
+        return null;
+    }
 }

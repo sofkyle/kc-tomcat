@@ -10,172 +10,195 @@ import javax.servlet.*;
 
 public class RequestFacade implements ServletRequest {
 
-  private ServletRequest request = null;
+    private ServletRequest request = null;
 
-  public RequestFacade(Request request) {
-    this.request = request;
-  }
+    public RequestFacade(Request request) {
+        this.request = request;
+    }
 
-  /* implementation of the ServletRequest*/
-  public Object getAttribute(String attribute) {
-    return request.getAttribute(attribute);
-  }
+    /* 实现ServletRequest接口 */
+    @Override
+    public Object getAttribute(String name) {
+        return request.getAttribute(name);
+    }
 
-  public Enumeration getAttributeNames() {
-    return request.getAttributeNames();
-  }
+    @Override
+    public Enumeration<String> getAttributeNames() {
+        return request.getAttributeNames();
+    }
 
-  public String getRealPath(String path) {
-    return request.getRealPath(path);
-  }
+    @Override
+    public String getCharacterEncoding() {
+        return request.getCharacterEncoding();
+    }
 
-  @Override
-  public int getRemotePort() {
-    return 0;
-  }
+    @Override
+    public void setCharacterEncoding(String env) throws UnsupportedEncodingException {
+        request.setCharacterEncoding(env);
+    }
 
-  @Override
-  public String getLocalName() {
-    return null;
-  }
+    @Override
+    public int getContentLength() {
+        return request.getContentLength();
+    }
 
-  @Override
-  public String getLocalAddr() {
-    return null;
-  }
+    @Override
+    public long getContentLengthLong() {
+        return request.getContentLengthLong();
+    }
 
-  @Override
-  public int getLocalPort() {
-    return 0;
-  }
+    @Override
+    public String getContentType() {
+        return request.getContentType();
+    }
 
-  @Override
-  public ServletContext getServletContext() {
-    return null;
-  }
+    @Override
+    public ServletInputStream getInputStream() throws IOException {
+        return request.getInputStream();
+    }
 
-  @Override
-  public AsyncContext startAsync() throws IllegalStateException {
-    return null;
-  }
+    @Override
+    public String getParameter(String name) {
+        return request.getParameter(name);
+    }
 
-  @Override
-  public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse) throws IllegalStateException {
-    return null;
-  }
+    @Override
+    public Enumeration<String> getParameterNames() {
+        return request.getParameterNames();
+    }
 
-  @Override
-  public boolean isAsyncStarted() {
-    return false;
-  }
+    @Override
+    public String[] getParameterValues(String name) {
+        return request.getParameterValues(name);
+    }
 
-  @Override
-  public boolean isAsyncSupported() {
-    return false;
-  }
+    @Override
+    public Map<String, String[]> getParameterMap() {
+        return request.getParameterMap();
+    }
 
-  @Override
-  public AsyncContext getAsyncContext() {
-    return null;
-  }
+    @Override
+    public String getProtocol() {
+        return request.getProtocol();
+    }
 
-  @Override
-  public DispatcherType getDispatcherType() {
-    return null;
-  }
+    @Override
+    public String getScheme() {
+        return request.getScheme();
+    }
 
-  public RequestDispatcher getRequestDispatcher(String path) {
-    return request.getRequestDispatcher(path);
-  }
+    @Override
+    public String getServerName() {
+        return request.getServerName();
+    }
 
-  public boolean isSecure() {
-    return request.isSecure();
-  }
+    @Override
+    public int getServerPort() {
+        return request.getServerPort();
+    }
 
-  public String getCharacterEncoding() {
-    return request.getCharacterEncoding();
-  }
+    @Override
+    public BufferedReader getReader() throws IOException {
+        return request.getReader();
+    }
 
-  public int getContentLength() {
-    return request.getContentLength();
-  }
+    @Override
+    public String getRemoteAddr() {
+        return request.getRemoteAddr();
+    }
 
-  @Override
-  public long getContentLengthLong() {
-    return 0;
-  }
+    @Override
+    public String getRemoteHost() {
+        return request.getRemoteHost();
+    }
 
-  public String getContentType() {
-    return request.getContentType();
-  }
+    @Override
+    public void setAttribute(String name, Object o) {
+        request.setAttribute(name, o);
+    }
 
-  public ServletInputStream getInputStream() throws IOException {
-    return request.getInputStream();
-  }
+    @Override
+    public void removeAttribute(String name) {
+        request.removeAttribute(name);
+    }
 
-  public Locale getLocale() {
-    return request.getLocale();
-  }
+    @Override
+    public Locale getLocale() {
+        return request.getLocale();
+    }
 
-  public Enumeration getLocales() {
-    return request.getLocales();
-  }
+    @Override
+    public Enumeration<Locale> getLocales() {
+        return request.getLocales();
+    }
 
-  public String getParameter(String name) {
-    return request.getParameter(name);
-  }
+    @Override
+    public boolean isSecure() {
+        return request.isSecure();
+    }
 
-  public Map getParameterMap() {
-    return request.getParameterMap();
-  }
+    @Override
+    public RequestDispatcher getRequestDispatcher(String path) {
+        return request.getRequestDispatcher(path);
+    }
 
-  public Enumeration getParameterNames() {
-    return request.getParameterNames();
-  }
+    @Override
+    public String getRealPath(String path) {
+        return request.getRealPath(path);
+    }
 
-  public String[] getParameterValues(String parameter) {
-    return request.getParameterValues(parameter);
-  }
+    @Override
+    public int getRemotePort() {
+        return request.getRemotePort();
+    }
 
-  public String getProtocol() {
-    return request.getProtocol();
-  }
+    @Override
+    public String getLocalName() {
+        return request.getLocalName();
+    }
 
-  public BufferedReader getReader() throws IOException {
-    return request.getReader();
-  }
+    @Override
+    public String getLocalAddr() {
+        return request.getLocalAddr();
+    }
 
-  public String getRemoteAddr() {
-    return request.getRemoteAddr();
-  }
+    @Override
+    public int getLocalPort() {
+        return request.getLocalPort();
+    }
 
-  public String getRemoteHost() {
-    return request.getRemoteHost();
-  }
+    @Override
+    public ServletContext getServletContext() {
+        return request.getServletContext();
+    }
 
-  public String getScheme() {
-   return request.getScheme();
-  }
+    @Override
+    public AsyncContext startAsync() throws IllegalStateException {
+        return request.startAsync();
+    }
 
-  public String getServerName() {
-    return request.getServerName();
-  }
+    @Override
+    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse) throws IllegalStateException {
+        return request.startAsync(servletRequest, servletResponse);
+    }
 
-  public int getServerPort() {
-    return request.getServerPort();
-  }
+    @Override
+    public boolean isAsyncStarted() {
+        return request.isAsyncStarted();
+    }
 
-  public void removeAttribute(String attribute) {
-    request.removeAttribute(attribute);
-  }
+    @Override
+    public boolean isAsyncSupported() {
+        return request.isAsyncSupported();
+    }
 
-  public void setAttribute(String key, Object value) {
-    request.setAttribute(key, value);
-  }
+    @Override
+    public AsyncContext getAsyncContext() {
+        return request.getAsyncContext();
+    }
 
-  public void setCharacterEncoding(String encoding)
-    throws UnsupportedEncodingException {
-    request.setCharacterEncoding(encoding);
-  }
-
+    @Override
+    public DispatcherType getDispatcherType() {
+        return request.getDispatcherType();
+    }
 }
