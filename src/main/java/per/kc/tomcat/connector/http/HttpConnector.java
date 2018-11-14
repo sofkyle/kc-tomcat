@@ -36,6 +36,8 @@ public class HttpConnector implements Runnable {
             }
 
             // 将Socket推给HttpProcessor
+            HttpProcessor processor = new HttpProcessor(this);
+            processor.process(socket);
         }
     }
 
