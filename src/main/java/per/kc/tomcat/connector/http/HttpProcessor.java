@@ -142,7 +142,7 @@ public class HttpProcessor {
         } else if (requestLine.uriEnd < 1) {
             throw new ServletException("Missing HTTP request URI");
         }
-        // 解析Request URI之外的检索参数
+        // 解析Request URI之外的查询参数（即用?分隔的部分）
         int question = requestLine.indexOf("?");
         if (question >= 0) {
             request.setQueryString(new String(requestLine.uri, question + 1,
@@ -168,7 +168,7 @@ public class HttpProcessor {
             }
         }
 
-        // Parse any requested session ID out of the request URI
+        // 从请求URI中解析出SessionId
         String match = ";jsessionid=";
         int semicolon = uri.indexOf(match);
         if (semicolon >= 0) {
@@ -190,16 +190,15 @@ public class HttpProcessor {
             request.setRequestedSessionURL(false);
         }
 
-        // Normalize URI (using String operations at the moment)
+        // 标准化URI (using String operations at the moment)
         String normalizedUri = normalize(uri);
 
-        // Set the corresponding request properties
+        // 设定HttpRequest相应的一些属性
         ((HttpRequest) request).setMethod(method);
         request.setProtocol(protocol);
         if (normalizedUri != null) {
             ((HttpRequest) request).setRequestURI(normalizedUri);
-        }
-        else {
+        } else {
             ((HttpRequest) request).setRequestURI(uri);
         }
 
